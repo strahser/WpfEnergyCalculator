@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEnergyCalculator"
         mc:Ignorable="d"
-        Title="EnclosingStructures" Height="600" Width="1000">
+        Title="EnclosingStructures" Height="700" Width="1500">
     <Grid>
-
-        <DataGrid AutoGenerateColumns="False"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0" VerticalAlignment="Center" 
+            FontSize="20" FontWeight="Bold"
+            
+            > Введите данные ограждающих конструкций здания</TextBlock>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
                   Name="EnclosingStructureForm"
                          ItemsSource="{Binding MyData}"
                          Margin="10"
@@ -20,22 +29,20 @@
 
 
             <DataGrid.Columns>
-                <!-- text column -->
-                <DataGridTextColumn Header="Наименование" Binding="{Binding StructureName}" Width="150" />
 
-                <!-- text column -->
-                <DataGridTextColumn Header="Обозначение" Binding="{Binding ShortStructureName}" Width="150"/>
+                <!-- Наименование -->
                 <DataGridTemplateColumn Header="Наименование" Width="120">
-                    <!-- center data -->
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox SelectedIndex="0">
-                                <TextBlock>Отдельный</TextBlock>
-                                <TextBlock>Блокированный</TextBlock>
+                                <TextBlock>Стена</TextBlock>
+                                <TextBlock>Кровля</TextBlock>
+                                <TextBlock>Пол</TextBlock>
+                                <TextBlock>Окно</TextBlock>
                             </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                    <!-- center header -->
+
                     <DataGridTemplateColumn.HeaderStyle>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -43,7 +50,49 @@
                         </Style>
                     </DataGridTemplateColumn.HeaderStyle>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Ориентация" Binding="{Binding StructureOrientation}" Width="150"/>
+
+                <!-- Обозначение -->
+                <DataGridTemplateColumn Header="Обозначение" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedIndex="0">
+                                <TextBlock>НС1</TextBlock>
+                                <TextBlock>КР1</TextBlock>
+                                <TextBlock>ПЛ1</TextBlock>
+                                <TextBlock>ОК1</TextBlock>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
+
+                <!-- Ориентация -->
+                <DataGridTemplateColumn Header="Ориентация" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedIndex="0">
+                                <TextBlock>С</TextBlock>
+                                <TextBlock>Ю</TextBlock>
+                                <TextBlock>В</TextBlock>
+                                <TextBlock>З</TextBlock>
+                                <TextBlock>Горизонтальная кровля</TextBlock>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
                 <!-- text column with vertical alignment=center -->
                 <DataGridTemplateColumn Header="Площадь, м2" Width="120">
                     <!-- center data -->
@@ -62,21 +111,35 @@
                 </DataGridTemplateColumn>
 
                 <!-- button -->
-                <DataGridTemplateColumn Header="Детали Конструкции" Width="200">
+                <DataGridTemplateColumn Header=" Показать Детали Конструкции" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <Button Click="ChangeText" Content="{Binding ShortStructureName}" />
-
                             </StackPanel>
-
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                <!-- button -->
+                <DataGridTemplateColumn Header=" Калькулятор площади " >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Click="ChangeText" Content="Рассчитать" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-
         </DataGrid>
-
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 15 0 0" HorizontalAlignment="Center">
+            <TextBlock 
+                Text="
+                Кнопка детали конструкции обновляется динамически при выборе конструкции.">
+  
+            </TextBlock>
+            <Button Content="Редактировать Базу конструкций" MaxWidth="250" Margin="10 20 0 0" />
+            <Button Content="Подтвердить Введенные значения" MaxWidth="250" Margin="10 20 0 0" />
+        </StackPanel>
     </Grid>
 </Window>

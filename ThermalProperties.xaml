@@ -3,12 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfEnergyCalculator"
+        xmlns:local="clr-namespace:WpfEnergyCalculator" d:DataContext="{d:DesignInstance Type=local:ConnectionViewModel}"
         mc:Ignorable="d"
         Title="ThermalProperties" Height="450" Width="800">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="259,175,0,0" TextWrapping="Wrap" Text= "{Binding Data}" VerticalAlignment="Top"/>
+        <StackPanel>
+            <ComboBox x:Name="StructureCombobox" ItemsSource="{Binding Path=StructureCollection}"
+                      DisplayMemberPath="StructureType"
+                  SelectedValue="{Binding Path=PhonebookEntry}" 
 
+                      />
+            <Image Source="{Binding SelectedItem.ImagePath, ElementName=StructureCombobox}" Width="250"/>
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -28,7 +28,6 @@
        
                     <StackPanel >                    
                     <TextBlock Grid.Column="1" Text="Исходные данные"  />
-                    <TextBlock Grid.Column="1" Text="Исходные данные"  />
                     <TextBlock Text="Выберети Регион/Область" />
                         <ComboBox SelectedIndex="0">
                             <TextBlock>Московская Область</TextBlock>
@@ -58,9 +57,11 @@
                         <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка ограждающих конструкций" Click="Button_Click" />
                         <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка Помещений" Click="Button_Click" />
                         <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Рассчитать " Click="Button_Click" />
-                        <TextBlock Text="Результаты расчета" />
-                        <TextBlock Text="Класс Энергоэффективности А" />
-                    </StackPanel>
+                        <TextBlock Text="Результаты расчета" TextAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+            <TextBlock Text="Класс Энергоэффективности  А" FontSize="16" />
+            <TextBlock Text="Нагрузка на отполение и вентиляцию...." FontSize="16" />
+            <TextBlock Text="Нагрузка на горячее водоснабжение...." FontSize="16" />
+        </StackPanel>
 
         
 
