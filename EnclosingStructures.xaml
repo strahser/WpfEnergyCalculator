@@ -20,16 +20,30 @@
 
 
             <DataGrid.Columns>
-
-
                 <!-- text column -->
                 <DataGridTextColumn Header="Наименование" Binding="{Binding StructureName}" Width="150" />
 
                 <!-- text column -->
                 <DataGridTextColumn Header="Обозначение" Binding="{Binding ShortStructureName}" Width="150"/>
+                <DataGridTemplateColumn Header="Наименование" Width="120">
+                    <!-- center data -->
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedIndex="0">
+                                <TextBlock>Отдельный</TextBlock>
+                                <TextBlock>Блокированный</TextBlock>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <!-- center header -->
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Ориентация" Binding="{Binding StructureOrientation}" Width="150"/>
-
-
                 <!-- text column with vertical alignment=center -->
                 <DataGridTemplateColumn Header="Площадь, м2" Width="120">
                     <!-- center data -->

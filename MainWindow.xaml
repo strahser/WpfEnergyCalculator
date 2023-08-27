@@ -24,36 +24,45 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <TabControl x:Name="Calculator">
-            <TabItem x:Name="InputDataTab">
-                <TabItem.Header>
-                    "Исходные данные"
-                </TabItem.Header>
-                <TabItem.Content>
-                    <StackPanel >
-                        <TextBlock Grid.Column="1" Text="Исходные данные"  />
-                        <TextBlock Text="Выберети Регион/Область" />
-                        <ComboBox>
+        </Grid.RowDefinitions>          
+       
+                    <StackPanel >                    
+                    <TextBlock Grid.Column="1" Text="Исходные данные"  />
+                    <TextBlock Grid.Column="1" Text="Исходные данные"  />
+                    <TextBlock Text="Выберети Регион/Область" />
+                        <ComboBox SelectedIndex="0">
                             <TextBlock>Московская Область</TextBlock>
                             <TextBlock>Волгоградская Область</TextBlock>
                         </ComboBox>
                         <TextBlock Text="Выберети Город" />
-                        <ComboBox>
+                        <ComboBox SelectedIndex="0">
                             <TextBlock>Москва</TextBlock>
                             <TextBlock>Волгоград</TextBlock>
                         </ComboBox>
+                        <TextBlock Text="Тип расположения здания" />
+                        <ComboBox SelectedIndex="0">
+                            <TextBlock>Отдельный</TextBlock>
+                            <TextBlock>Блокированный</TextBlock>
+                        </ComboBox>
                         <TextBlock Text="Температура в здании" />
                         <TextBox Text="20" />
-                        
-                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="ограждающие конструкции" Click="Button_Click" />
-                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Помещения" Click="Button_Click" />
+                        <TextBlock Text="Высота здания" />
+                        <TextBox Text="6" />
+                        <TextBlock Text="Количество жителей" />
+                        <TextBox Text="3" />
+                        <TextBlock Text="Тип Теплоснабжения" />
+                        <ComboBox SelectedIndex="0">
+                            <TextBlock>Котельная</TextBlock>
+                            <TextBlock>Централизованный</TextBlock>
+                        </ComboBox>
+                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка ограждающих конструкций" Click="Button_Click" />
+                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка Помещений" Click="Button_Click" />
+                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Рассчитать " Click="Button_Click" />
+                        <TextBlock Text="Результаты расчета" />
+                        <TextBlock Text="Класс Энергоэффективности А" />
                     </StackPanel>
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>
 
+        
 
     </Grid>
 </Window>

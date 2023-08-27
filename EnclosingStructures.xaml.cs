@@ -24,7 +24,6 @@ namespace WpfEnergyCalculator
     {
 
         public ObservableCollection<StructureTableView> MyData { get; set; }
-        public ICommand ClickMyButton1 { get; set; }
 
         public EnclosingStructures()
         {
