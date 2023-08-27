@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfEnergyCalculator.EnclosingStructures"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfEnergyCalculator"
+        mc:Ignorable="d"
+        Title="EnclosingStructures" Height="600" Width="1000">
+    <Grid>
+
+        <DataGrid AutoGenerateColumns="False"
+                  Name="EnclosingStructureForm"
+                         ItemsSource="{Binding MyData}"
+                         Margin="10"
+                         IsReadOnly="True"
+                         FontFamily="Gisha" FontSize="20"
+                   AlternatingRowBackground="LightGreen"
+                  
+                  >
+
+
+            <DataGrid.Columns>
+
+
+                <!-- text column -->
+                <DataGridTextColumn Header="Наименование" Binding="{Binding StructureName}" Width="150" />
+
+                <!-- text column -->
+                <DataGridTextColumn Header="Обозначение" Binding="{Binding ShortStructureName}" Width="150"/>
+                <DataGridTextColumn Header="Ориентация" Binding="{Binding StructureOrientation}" Width="150"/>
+
+
+                <!-- text column with vertical alignment=center -->
+                <DataGridTemplateColumn Header="Площадь, м2" Width="120">
+                    <!-- center data -->
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StructureArea}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <!-- center header -->
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
+
+                <!-- button -->
+                <DataGridTemplateColumn Header="Детали Конструкции" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Click="ChangeText" Content="{Binding ShortStructureName}" />
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>
