@@ -6,15 +6,31 @@
         xmlns:local="clr-namespace:WpfEnergyCalculator" d:DataContext="{d:DesignInstance Type=local:ConnectionViewModel}"
         mc:Ignorable="d"
         Title="ThermalProperties" Height="450" Width="800">
+    
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <TextBlock Text="Выберите Тип конструкции из базы данных" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold"></TextBlock>
             <ComboBox x:Name="StructureCombobox" ItemsSource="{Binding Path=StructureCollection}"
-                      DisplayMemberPath="StructureType"
-                  SelectedValue="{Binding Path=PhonebookEntry}" 
-
+                      DisplayMemberPath="StructureType" 
                       />
-            <Image Source="{Binding SelectedItem.ImagePath, ElementName=StructureCombobox}" Width="250"/>
-        </StackPanel>
+            <!-- SelectedValue="{Binding Path=PhonebookEntry}" -->
+            <TextBlock Text="Тип Ограждения" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="{Binding SelectedItem.StructureType, ElementName=StructureCombobox}"></TextBlock>
+            <TextBlock Text="Термическое сопротивление" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="{Binding SelectedItem.HeatCapacity, ElementName=StructureCombobox}"></TextBlock>
+            <TextBlock Text="Толщина, мм" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="{Binding SelectedItem.StructureThickness, ElementName=StructureCombobox}"></TextBlock>
 
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Схема" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"></TextBlock>
+        <Image Grid.Column="1"  Source="{Binding SelectedItem.ImagePath, ElementName=StructureCombobox}" Width="250"/>
+
+        </StackPanel>
     </Grid>
 </Window>
