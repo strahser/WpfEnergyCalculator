@@ -33,5 +33,12 @@ namespace WpfEnergyCalculator
             EnclosingStructures taskWindow = new EnclosingStructures();
             taskWindow.Show();
         }
+
+        private void ShowRoomView(object sender, RoutedEventArgs e)
+        {
+            RoomsView taskWindow = new RoomsView();
+            taskWindow.Show();
+        }
+        
     }
 }

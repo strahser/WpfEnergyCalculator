@@ -5,7 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEnergyCalculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1000">
+        Title="MainWindow" Height="2000  " Width="1000"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        >
+    
     <Window.Resources>
         <Style x:Key="MyButtonStyle">
             <Setter Property="Control.FontFamily" Value="Calibri"></Setter>
@@ -13,7 +24,20 @@
             <Setter Property="Control.FontWeight" Value="Bold"></Setter>
             <Setter Property="Control.Padding" Value="5"></Setter>
             <Setter Property="Control.Margin" Value="5"></Setter>
-
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TitleText">
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Margin" Value="0,40,10,10"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Label">
+            <Setter Property="DockPanel.Dock" Value="Right"/>
+            <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,3,10,0"/>
         </Style>
     </Window.Resources>
     <Grid>
@@ -24,46 +48,58 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-        </Grid.RowDefinitions>          
-       
-                    <StackPanel >                    
-                    <TextBlock Grid.Column="1" Text="Исходные данные"  />
-                    <TextBlock Text="Выберети Регион/Область" />
+        </Grid.RowDefinitions>               
+            <StackPanel Grid.Row="0" Margin="10,0,0,0">
+            <TextBlock  Style="{StaticResource TitleText}" Grid.Column="1" Text="Исходные данные"  />
+            <TextBlock Style="{StaticResource Label}" Text="Выберети Регион/Область" />
                         <ComboBox SelectedIndex="0">
                             <TextBlock>Московская Область</TextBlock>
                             <TextBlock>Волгоградская Область</TextBlock>
                         </ComboBox>
-                        <TextBlock Text="Выберети Город" />
+            <TextBlock  Style="{StaticResource Label}" Text="Выберети Город" />
                         <ComboBox SelectedIndex="0">
                             <TextBlock>Москва</TextBlock>
                             <TextBlock>Волгоград</TextBlock>
                         </ComboBox>
-                        <TextBlock Text="Тип расположения здания" />
+            <TextBlock Style="{StaticResource Label}" Text="Тип расположения здания" />
                         <ComboBox SelectedIndex="0">
                             <TextBlock>Отдельный</TextBlock>
                             <TextBlock>Блокированный</TextBlock>
                         </ComboBox>
-                        <TextBlock Text="Температура в здании" />
+            <TextBlock Style="{StaticResource Label}" Text="Температура в здании" />
                         <TextBox Text="20" />
-                        <TextBlock Text="Высота здания" />
+            <TextBlock Style="{StaticResource Label}" Text="Высота здания" />
                         <TextBox Text="6" />
-                        <TextBlock Text="Количество жителей" />
+            <TextBlock Style="{StaticResource Label}" Text="Количество этажей" />
+            <TextBox Text="1" />
+            <TextBlock Style="{StaticResource Label}" Text="Количество жителей" />
                         <TextBox Text="3" />
-                        <TextBlock Text="Тип Теплоснабжения" />
-                        <ComboBox SelectedIndex="0">
+            <TextBlock Style="{StaticResource Label}" Text="Тип Теплоснабжения" />
+            <ComboBox SelectedIndex="0" Margin="0,0,0,15">
                             <TextBlock>Котельная</TextBlock>
                             <TextBlock>Централизованный</TextBlock>
                         </ComboBox>
-                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка ограждающих конструкций" Click="Button_Click" />
-                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Настройка Помещений" Click="Button_Click" />
-                        <Button Style="{StaticResource MyButtonStyle}" Width="500" Height="30" Content="Рассчитать " Click="Button_Click" />
-                        <TextBlock Text="Результаты расчета" TextAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
-            <TextBlock Text="Класс Энергоэффективности  А" FontSize="16" />
-            <TextBlock Text="Нагрузка на отполение и вентиляцию...." FontSize="16" />
-            <TextBlock Text="Нагрузка на горячее водоснабжение...." FontSize="16" />
+            <Button  Width="500" Height="30" Content="Настройка ограждающих конструкций" Click="Button_Click" Margin="0,0,0,5" />
+            <Button  Width="500" Height="30" Content="Настройка Помещений" Click="ShowRoomView" Margin="0,0,0,5"  />
+            <Button  Width="500" Height="30" Content="Рассчитать "  Margin="0,0,0,5" />
         </StackPanel>
 
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock  Style="{StaticResource TitleText}" Grid.Column="1" Text="Состав Здания"  />
+            
+            <CheckBox Name="hasRoof" Content="Наличие теплого чердака" Margin="0,0,0,20" />
+            <TextBlock IsEnabled="{Binding ElementName=hasRoof, Path=IsChecked}" Text="Введите температуру"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=hasRoof, Path=IsChecked}" Text="15" />
+            <CheckBox Name="hasBasment" Content="Наличие теплого подвала" Margin="0,0,0,20" />
+            <TextBlock IsEnabled="{Binding ElementName=hasBasment, Path=IsChecked}" Text="Введите температуру"></TextBlock>
+            <TextBox IsEnabled="{Binding ElementName=hasBasment, Path=IsChecked}" Text="15" />
+        </StackPanel>
         
-
+        <StackPanel Grid.Column="0" Grid.Row="1">
+        <TextBlock Text="Результаты расчета" TextAlignment="Left" FontSize="16" FontWeight="DemiBold"/>
+        <TextBlock Text="Класс Энергоэффективности  А" FontSize="16" />
+        <TextBlock Text="Нагрузка на отполение и вентиляцию...." FontSize="16" />
+        <TextBlock Text="Нагрузка на горячее водоснабжение...." FontSize="16" />
+        </StackPanel>
     </Grid>
 </Window>

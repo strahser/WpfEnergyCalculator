@@ -23,6 +23,7 @@ namespace WpfEnergyCalculator
     {
         public string StructurePropertyId { get; set; }
         public string StructureType { get; set; }
+        public string StructureInstatnce { get; set; }
         public string ImagePath { get; set; }
         public double HeatCapacity { get; set; }
         public double StructureThickness { get; set; }
@@ -48,25 +49,24 @@ namespace WpfEnergyCalculator
     {
         public ConnectionViewModel()
         {
-            
-
             ObservableCollection<StructurePropertys>  StructurePropertyList = new ObservableCollection<StructurePropertys>()
                {
-                new StructurePropertys() { StructurePropertyId="1", ImagePath ="Images/wall.png", HeatCapacity=4100,StructureThickness=200,StructureType="Стена"},
-                new StructurePropertys() {StructurePropertyId="2", ImagePath="Images/wall.png", HeatCapacity=4100,StructureThickness=200,StructureType="Кровля"},
-                 new StructurePropertys() {StructurePropertyId="3", ImagePath="Images/wall.png", HeatCapacity=4100,StructureThickness=200,StructureType="Окно"}
+                new StructurePropertys() { StructurePropertyId="1",StructureInstatnce="НС1", ImagePath ="Images/wall.png", HeatCapacity=4100,StructureThickness=200,StructureType="Стена"},
+                new StructurePropertys() {StructurePropertyId="2",StructureInstatnce="КР1", ImagePath="Images/roof.png", HeatCapacity=4100,StructureThickness=200,StructureType="Кровля"},
+                 new StructurePropertys() {StructurePropertyId="3",StructureInstatnce="ОК1", ImagePath="Images/wall.png", HeatCapacity=4100,StructureThickness=200,StructureType="Окно"}
                };
             _structure_collection = new CollectionView(StructurePropertyList);
         }
 
 
 
-        private  CollectionView _structure_collection;
+        private readonly CollectionView _structure_collection;
         private string _selected_structure;
 
         public CollectionView StructureCollection
         {
             get { return _structure_collection; }
+
         }
 
         public string SelectedStructure
@@ -83,8 +83,7 @@ namespace WpfEnergyCalculator
 
         private void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

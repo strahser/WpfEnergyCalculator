@@ -5,7 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEnergyCalculator" d:DataContext="{d:DesignInstance Type=local:ConnectionViewModel}"
         mc:Ignorable="d"
-        Title="ThermalProperties" Height="450" Width="800">
+        Title="ThermalProperties" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        >
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,8 +25,11 @@
         <StackPanel Grid.Column="0" Orientation="Vertical">
             <TextBlock Text="Выберите Тип конструкции из базы данных" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold"></TextBlock>
             <ComboBox x:Name="StructureCombobox" ItemsSource="{Binding Path=StructureCollection}"
-                      DisplayMemberPath="StructureType" 
-                      />
+                      DisplayMemberPath="StructureType" />
+
+            <TextBlock Text="Выберите Экземпляр конструкции " HorizontalAlignment="Left" FontSize="14" FontWeight="Bold"></TextBlock>
+            <ComboBox x:Name="StructureInstanceCombobox" ItemsSource="{Binding Path=StructureCollection}"
+                      DisplayMemberPath="StructureInstatnce" />
             <!-- SelectedValue="{Binding Path=PhonebookEntry}" -->
             <TextBlock Text="Тип Ограждения" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
             <TextBlock Text="{Binding SelectedItem.StructureType, ElementName=StructureCombobox}"></TextBlock>
@@ -29,8 +41,8 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Схема" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"></TextBlock>
-        <Image Grid.Column="1"  Source="{Binding SelectedItem.ImagePath, ElementName=StructureCombobox}" Width="250"/>
-
+            <Image Grid.Column="1"  Source="{Binding SelectedItem.ImagePath, ElementName=StructureInstanceCombobox}" Width="250"/>
+            <Button> Подтвердить выбор конструкции </Button>
         </StackPanel>
     </Grid>
 </Window>

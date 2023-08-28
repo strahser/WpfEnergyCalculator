@@ -26,7 +26,7 @@ namespace WpfEnergyCalculator
     public partial class EnclosingStructures : Window
     {
 
-        public ObservableCollection<StructureTableView> MyData { get; set; }
+        public ObservableCollection<StructureTableView> MyData { get; set;}
         public ObservableCollection<StructurePropertys> StructurePropertyList { get; set; }
 
         public EnclosingStructures()
@@ -62,8 +62,7 @@ namespace WpfEnergyCalculator
         }
         private void ChangeText(object sender, RoutedEventArgs e)
         {
-            StructureTableView structure_model = EnclosingStructureForm.SelectedItem as StructureTableView;
-            if (structure_model != null)
+            if (EnclosingStructureForm.SelectedItem is StructureTableView structure_model)
             {
                 ThermalProperties thermal_property_view = new ThermalProperties(structure_model);
                 thermal_property_view.Show();

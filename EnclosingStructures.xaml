@@ -31,7 +31,7 @@
             <DataGrid.Columns>
 
                 <!-- Наименование -->
-                <DataGridTemplateColumn Header="Наименование" Width="120">
+                <DataGridTemplateColumn Header="Наименование" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox SelectedIndex="0">
@@ -125,7 +125,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Click="ChangeText" Content="Рассчитать" />
+                                <Button Content="Рассчитать" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
