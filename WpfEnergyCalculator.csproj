@@ -66,15 +66,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AreaCalculatorView.xaml.cs">
+      <DependentUpon>AreaCalculatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomData.cs" />
+    <Compile Include="Models\StructureCategory.cs" />
+    <Compile Include="Models\StructureOrientation.cs" />
+    <Compile Include="Models\StructurePropertys.cs" />
+    <Compile Include="Models\StructureInstance.cs" />
     <Compile Include="RoomProperties.xaml.cs">
       <DependentUpon>RoomProperties.xaml</DependentUpon>
     </Compile>
     <Compile Include="RoomsView.xaml.cs">
       <DependentUpon>RoomsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tests\DBSample.cs" />
     <Compile Include="ThermalProperties.xaml.cs">
       <DependentUpon>ThermalProperties.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CalculateAreaViewModel.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\RoomPropertyViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="AreaCalculatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EnclosingStructures.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\roof.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

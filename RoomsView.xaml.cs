@@ -12,20 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfEnergyCalculator.Models;
+using WpfEnergyCalculator.Tests;
 
 namespace WpfEnergyCalculator
 {
     /// <summary>
     /// Логика взаимодействия для RoomsView.xaml
     /// </summary>
-    public class RoomData
-    {
-        public string RoomType { get; set; }   
-        public string RoomProperty { get; set; }
-        public Double RoomArea { get; set; }
-        public Double RoomHeight { get; set; }
 
-    }
     public partial class RoomsView : Window
     {
         public ObservableCollection<RoomData> RoomPropertyList { get; set; }
@@ -33,21 +28,7 @@ namespace WpfEnergyCalculator
         {
             InitializeComponent();
             this.DataContext = this;
-
-            RoomPropertyList = new ObservableCollection<RoomData>()
-            {
-                new RoomData()
-                {
-                    RoomType="Жилые",RoomProperty="Отапливаемые",RoomArea=20,RoomHeight=3
-                },
-                new RoomData()
-                {
-                    RoomType="Вспомогательные",RoomProperty="Не Отапливаемые",RoomArea=50,RoomHeight=3
-                },
-
-
-            };
-
+            RoomPropertyList = DBSample._RoomPropertyList;
         }
         private void ShowRoomDetail(object sender, RoutedEventArgs e)
         {

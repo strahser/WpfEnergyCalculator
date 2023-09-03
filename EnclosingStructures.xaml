@@ -29,93 +29,18 @@
 
 
             <DataGrid.Columns>
-
-                <!-- Наименование -->
-                <DataGridTemplateColumn Header="Наименование" Width="150">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox SelectedIndex="0">
-                                <TextBlock>Стена</TextBlock>
-                                <TextBlock>Кровля</TextBlock>
-                                <TextBlock>Пол</TextBlock>
-                                <TextBlock>Окно</TextBlock>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                </DataGridTemplateColumn>
-
-                <!-- Обозначение -->
-                <DataGridTemplateColumn Header="Обозначение" Width="200">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox SelectedIndex="0">
-                                <TextBlock>НС1</TextBlock>
-                                <TextBlock>КР1</TextBlock>
-                                <TextBlock>ПЛ1</TextBlock>
-                                <TextBlock>ОК1</TextBlock>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                </DataGridTemplateColumn>
-
-                <!-- Ориентация -->
-                <DataGridTemplateColumn Header="Ориентация" Width="120">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox SelectedIndex="0">
-                                <TextBlock>С</TextBlock>
-                                <TextBlock>Ю</TextBlock>
-                                <TextBlock>В</TextBlock>
-                                <TextBlock>З</TextBlock>
-                                <TextBlock>Горизонтальная кровля</TextBlock>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                </DataGridTemplateColumn>
                 <!-- text column with vertical alignment=center -->
-                <DataGridTemplateColumn Header="Площадь, м2" Width="120">
-                    <!-- center data -->
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding StructureArea}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <!-- center header -->
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                </DataGridTemplateColumn>
 
+                <DataGridTextColumn Header="Наименование" Binding="{Binding StructureProperty.StructureCategory.StructureName}" />
+                <DataGridTextColumn Header="Обозначение" Binding="{Binding StructureProperty.StructureName}" />
+                <DataGridTextColumn Header="Ориентация" Binding="{Binding StructureInstanceOrientation}" />
+                <DataGridTextColumn Header="Площадь, м2" Binding="{Binding StructureInstanceArea}" />
                 <!-- button -->
                 <DataGridTemplateColumn Header=" Показать Детали Конструкции" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Click="ChangeText" Content="{Binding ShortStructureName}" />
+                                <Button Click="ChangeText" Content="{Binding StructureProperty.StructureName}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

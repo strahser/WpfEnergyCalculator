@@ -3,18 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfEnergyCalculator" d:DataContext="{d:DesignInstance Type=local:ConnectionViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodels:ConnectionViewModel}"
         mc:Ignorable="d"
         Title="ThermalProperties" Height="450" Width="800"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodels="clr-namespace:WpfEnergyCalculator.ViewModels"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        >
+        FontFamily="{DynamicResource MaterialDesignFont}"       
+                >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontWeight" Value="Medium" />
+        </Style>
+
+    </Window.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,24 +32,35 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Vertical">
-            <TextBlock Text="Выберите Тип конструкции из базы данных" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold"></TextBlock>
-            <ComboBox x:Name="StructureCombobox" ItemsSource="{Binding Path=StructureCollection}"
-                      DisplayMemberPath="StructureType" />
-
-            <TextBlock Text="Выберите Экземпляр конструкции " HorizontalAlignment="Left" FontSize="14" FontWeight="Bold"></TextBlock>
-            <ComboBox x:Name="StructureInstanceCombobox" ItemsSource="{Binding Path=StructureCollection}"
-                      DisplayMemberPath="StructureInstatnce" />
-            <!-- SelectedValue="{Binding Path=PhonebookEntry}" -->
-            <TextBlock Text="Тип Ограждения" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="{Binding SelectedItem.StructureType, ElementName=StructureCombobox}"></TextBlock>
-            <TextBlock Text="Термическое сопротивление" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="{Binding SelectedItem.HeatCapacity, ElementName=StructureCombobox}"></TextBlock>
-            <TextBlock Text="Толщина, мм" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold"></TextBlock>
-            <TextBlock Text="{Binding SelectedItem.StructureThickness, ElementName=StructureCombobox}"></TextBlock>
-
+             <StackPanel>
+                <Label Content="Выберите Категорию Ограждающей Конструкции"/>
+            <ComboBox x:Name="StructureCategoryCombobox" ItemsSource="{Binding StructureCategoryList}"
+                      DisplayMemberPath="StructureName"  
+                      SelectedItem="{Binding SelectedCategory}" 
+                      SelectedIndex="0"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Выберите Экземпляр Категории" ></Label>
+            <ComboBox x:Name="StructureInstanceCombobox" ItemsSource="{Binding StructurePropertyList}"
+                      DisplayMemberPath="StructureName" SelectedItem="{Binding SelectedProperty}"
+                      IsEnabled="{Binding AllowCategorySelection}" SelectedIndex="0"
+                      />
+            </StackPanel>
+            <Label Content="Тип Ограждения"></Label>
+            <TextBlock Text="{Binding SelectedCategory.StructureName}" Foreground="Black"></TextBlock>
+            <Label Content="Термическое сопротивление" ></Label>
+            <TextBlock Text="{Binding SelectedProperty.HeatCapacity}" Foreground="Black"></TextBlock>
+            <Label Content="Толщина, мм" ></Label>
+            <TextBlock Text="{Binding SelectedProperty.StructureThickness}" Foreground="Black"></TextBlock>
+            <Label Content="Ориентация Конструкции" ></Label>            
+            <ComboBox x:Name="OrientationCombobox" ItemsSource="{Binding PossibleOrientationTypes}"
+          SelectedItem="{Binding SelectedOrientationType}"/>
+            <Label Content="Площадь м2"></Label>
+            <TextBox Text="{Binding Area,Mode=TwoWay }"></TextBox>
         </StackPanel>
+        
         <StackPanel Grid.Column="1" Orientation="Vertical">
-            <TextBlock Text="Схема" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"></TextBlock>
+            <Label Content="Схема" ></Label>
             <Image Grid.Column="1"  Source="{Binding SelectedItem.ImagePath, ElementName=StructureInstanceCombobox}" Width="250"/>
             <Button> Подтвердить выбор конструкции </Button>
         </StackPanel>

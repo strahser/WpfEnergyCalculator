@@ -11,25 +11,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfEnergyCalculator.Models;
+using WpfEnergyCalculator.ViewModel;
 using WpfEnergyCalculator.ViewModels;
 
 namespace WpfEnergyCalculator
 {
     /// <summary>
-    /// Логика взаимодействия для RoomProperties.xaml
+    /// Логика взаимодействия для AreaCalculatorView.xaml
     /// </summary>
-    public partial class RoomProperties : Window
+    public partial class AreaCalculatorView : UserControl
     {
-        public RoomProperties()
-        {
-            InitializeComponent();
-            RoomPropertyViewModel roomPropertyViewModel = new RoomPropertyViewModel();
-            DataContext = roomPropertyViewModel;
-        }
+ 
 
-        
-        
+        public AreaCalculatorView()
+        {
+            CalculateAreaViewModel calculateAreaViewModel = new CalculateAreaViewModel();
+            InitializeComponent();
+            DataContext = calculateAreaViewModel;
+
+
+        }
     }
 }
