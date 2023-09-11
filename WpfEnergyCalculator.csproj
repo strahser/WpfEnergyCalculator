@@ -102,7 +102,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AreaCalculatorView.xaml.cs">
+    <Compile Include="ViewModels\RoomViewModels.cs" />
+    <Compile Include="Views\AreaCalculatorView.xaml.cs">
       <DependentUpon>AreaCalculatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Configuration.cs" />
@@ -113,14 +114,14 @@
     <Compile Include="Models\StructureOrientation.cs" />
     <Compile Include="Models\StructurePropertys.cs" />
     <Compile Include="Models\StructureInstance.cs" />
-    <Compile Include="RoomProperties.xaml.cs">
+    <Compile Include="Views\RoomProperties.cs">
       <DependentUpon>RoomProperties.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RoomsView.xaml.cs">
+    <Compile Include="Views\RoomsView.xaml.cs">
       <DependentUpon>RoomsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tests\DBSample.cs" />
-    <Compile Include="ThermalProperties.xaml.cs">
+    <Compile Include="Views\ThermalProperties.xaml.cs">
       <DependentUpon>ThermalProperties.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CalculateAreaViewModel.cs" />
@@ -128,11 +129,11 @@
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\RoomPropertyViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Page Include="AreaCalculatorView.xaml">
+    <Page Include="Views\AreaCalculatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EnclosingStructures.xaml">
+    <Page Include="Views\EnclosingStructures.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,22 +145,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnclosingStructures.xaml.cs">
+    <Compile Include="Views\EnclosingStructures.xaml.cs">
       <DependentUpon>EnclosingStructures.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RoomProperties.xaml">
+    <Page Include="Views\RoomProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RoomsView.xaml">
+    <Page Include="Views\RoomsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThermalProperties.xaml">
+    <Page Include="Views\ThermalProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,10 +194,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\wall.png" />
+    <Resource Include="Images\wall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\roof.png" />
+    <Resource Include="Images\roof.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

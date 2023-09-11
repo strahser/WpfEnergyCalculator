@@ -24,12 +24,19 @@ namespace WpfEnergyCalculator
     {
         public RoomProperties()
         {
+
             InitializeComponent();
             RoomPropertyViewModel roomPropertyViewModel = new RoomPropertyViewModel();
             DataContext = roomPropertyViewModel;
         }
 
-        
-        
+        public RoomProperties(RoomData SelectedRoom)
+        {
+
+            InitializeComponent();
+            RoomPropertyViewModel roomPropertyViewModel = new RoomPropertyViewModel(SelectedRoom);
+            DataContext = roomPropertyViewModel;
+        }
+
     }
 }

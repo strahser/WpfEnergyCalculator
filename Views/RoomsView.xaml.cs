@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfEnergyCalculator.Models;
 using WpfEnergyCalculator.Tests;
+using WpfEnergyCalculator.Data;
+using WpfEnergyCalculator.ViewModels;
 
 namespace WpfEnergyCalculator
 {
@@ -23,24 +25,39 @@ namespace WpfEnergyCalculator
 
     public partial class RoomsView : Window
     {
-        public ObservableCollection<RoomData> RoomPropertyList { get; set; }
+
+
         public RoomsView()
         {
             InitializeComponent();
-            this.DataContext = this;
-            RoomPropertyList = DBSample._RoomPropertyList;
+            RoomViewModels roomViewModel = new RoomViewModels();
+            DataContext = roomViewModel;
+         
+            
         }
-        private void ShowRoomDetail(object sender, RoutedEventArgs e)
+        private void UpdateRoomDetail(object sender, RoutedEventArgs e)
         {
-            if (RoomForm.SelectedItem is RoomData)
+            if (RoomForm.SelectedItem is RoomData selectedRoom)
             {
-               RoomProperties roomPropertyWindow = new RoomProperties();
-                roomPropertyWindow.Show();
+               RoomProperties roomPropertyWindow = new RoomProperties(selectedRoom);
+               roomPropertyWindow.Show();
+               roomPropertyWindow.Owner = this;
             }
             else
             {
                 MessageBox.Show("Не заполнены данные");
             }
         }
+
+        private void CreateRoom(object sender, RoutedEventArgs e)
+        {
+
+            RoomProperties roomPropertyWindow = new RoomProperties();
+            roomPropertyWindow.Show();
+            roomPropertyWindow.Owner = this;
+
+        }
+
+
     }
 }

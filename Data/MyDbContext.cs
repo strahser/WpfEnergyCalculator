@@ -9,20 +9,24 @@ using WpfEnergyCalculator.Models;
 namespace WpfEnergyCalculator.Data
 {
     public class MyDbContext : DbContext
+
     {
+
+        public virtual DbSet<RoomData> RoomData { get; set; }
+        public virtual DbSet<StructureCategory> StructureCategory { get; set; }
+        public virtual DbSet<StructureInstance> StructureInstance { get; set; }
+
+        public MyDbContext() : base("SructureDB")
+        { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<MyDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
 
-            var model = modelBuilder.Build(Database.Connection);
-            ISqlGenerator sqlGenerator = new SqliteSqlGenerator();
-            _ = sqlGenerator.Generate(model.StoreModel);
-
-     
         }
 
-        //public DbSet<Tables.RoomData> Rooms { get; set; }
+
+
 
     }
 }

@@ -45,7 +45,7 @@ namespace WpfEnergyCalculator.ViewModels
             get { return _structure_category_list; }
             set {
                 _structure_category_list = value;
-                OnPropertyChanged("StructureCategoryList");                
+                OnPropertyChanged("StructureCategoryList");
             }
         }
 

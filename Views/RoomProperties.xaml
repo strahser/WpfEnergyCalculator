@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfEnergyCalculator.RoomProperties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        mc:Ignorable="d"
+        Title="RoomProperties" Height="450" Width="800"
+        xmlns:uc="clr-namespace:WpfEnergyCalculator" 
+        xmlns:viewmodels="clr-namespace:WpfEnergyCalculator.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RoomPropertyViewModel}">
+    
+    
+    <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock  Text="Свойства  помещения"></TextBlock>
+            <Label  Content="Выберите Тип помещения"></Label>
+                             <ComboBox ItemsSource="{Binding RoomTypeList}" SelectedItem="{Binding RoomType}" ></ComboBox>
+            <Label  Content="Выберите Свойства помещения" ></Label>
+            <ComboBox ItemsSource="{Binding RoomPropertyList}" SelectedItem="{Binding RoomProperty}"></ComboBox>            
+            <Label  Content="Высота помещения,м" ></Label>
+            <TextBox Text="{Binding RoomHeight,Mode=TwoWay}" />
+            <Label  Content="Введите площадь" ></Label>
+            <TextBox Text="{Binding RoomArea,Mode=TwoWay}" ></TextBox>
+            <Button Command="{Binding UpdateRoomsFactoryCommand}">Подтвердить</Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <!--<uc:AreaCalculatorView x:Name="AreaCalculatorViewInstance" />-->
+        </StackPanel>
+    </Grid>
+</Window>

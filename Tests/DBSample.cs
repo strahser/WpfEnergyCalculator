@@ -38,7 +38,7 @@ namespace WpfEnergyCalculator.Tests
         {
             StructurePropertyId = 2,
             StructureCategory = strusture_category_wall,
-            StructureThickness = 300,
+            StructureThickness = 100,
             StructureName = "НС2",
             HeatCapacity = 4000,
             ImagePath = "Images/wall.png"

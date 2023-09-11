@@ -16,8 +16,8 @@ namespace WpfEnergyCalculator.Models
         public int RoomDataID { get; set; } 
         public string RoomType { get; set; }
         public string RoomProperty { get; set; }
-        public Double RoomArea { get; set; }
-        public Double RoomHeight { get; set; }
+        public double RoomArea { get; set; }
+        public double RoomHeight { get; set; }
 
     }
 }

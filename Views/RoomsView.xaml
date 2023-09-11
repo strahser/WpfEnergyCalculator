@@ -3,32 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfEnergyCalculator"
+        xmlns:local="clr-namespace:WpfEnergyCalculator" 
+        xmlns:viewmodels="clr-namespace:WpfEnergyCalculator.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RoomViewModels}"
         mc:Ignorable="d"
-        Title="RoomsView" Height="450" Width="1500">
+        Title="RoomsView" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height= "auto" />
+            <RowDefinition Height="600" />
         </Grid.RowDefinitions>
-        <TextBlock 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>       
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock 
             Grid.Row="0" VerticalAlignment="Center" 
-            FontSize="20" FontWeight="Bold"
-            
-            > Введите данные помещения</TextBlock>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
+            FontSize="20" FontWeight="Bold" 
+            Margin="0,0,0,10"
+            Text="Введите данные помещения"> </TextBlock>
+            <Button  Grid.Row="1" Command="{Binding UpdateRoomsList}" Margin="0,0,0,10">Обновить Таблицу</Button>
+            <Button  Grid.Row="2" Click="CreateRoom" Margin="0,0,0,10" >Создать новую комнату</Button>
+        </Grid>
+
+        <DataGrid Grid.Row="1"  AutoGenerateColumns="False"
                   Name="RoomForm"
-                         ItemsSource="{Binding RoomPropertyList}"
+                         ItemsSource="{Binding RoomDatList}"
+                  SelectedItem="{Binding SelectedRoom}"
                          Margin="10"
                          IsReadOnly="True"
                          FontFamily="Gisha" FontSize="20"
-                   AlternatingRowBackground="LightGreen"
-                  
+                   AlternatingRowBackground="DarkSeaGreen"
+                   ScrollViewer.CanContentScroll="True"
+                   ScrollViewer.VerticalScrollBarVisibility="Visible"                  
                   >
 
             <DataGrid.Columns>
-
+                <DataGridTemplateColumn Header="# Комнаты" Width="200" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RoomDataID}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Header="Тип помещения" Width="200" > 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -71,18 +104,27 @@
                 </DataGridTemplateColumn>
 
                 <!-- button -->
-                <DataGridTemplateColumn Header=" Показать Детали Помещения" >
+                <DataGridTemplateColumn Header="Изменить помещение" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Click="ShowRoomDetail" Content="Ввод данных" />
+                                <Button Click="UpdateRoomDetail" Content="Изменить" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-            </DataGrid.Columns>
+                <!-- button -->
+                <DataGridTemplateColumn Header="удалить помещение" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Command="{Binding Path=DataContext.DeleteRoomCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Content="удалить" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>            
         </DataGrid>
-        
 
     </Grid>
 </Window>

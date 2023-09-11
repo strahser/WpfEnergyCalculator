@@ -39,6 +39,27 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="0,3,10,0"/>
         </Style>
+
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <AdornedElementPlaceholder>
+                            <Border BorderBrush="Transparent" BorderThickness="0" />
+                        </AdornedElementPlaceholder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

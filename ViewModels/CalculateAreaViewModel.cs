@@ -37,9 +37,7 @@ namespace WpfEnergyCalculator.ViewModels
         {
             get
             {
-                _calculateArea = new RelayCommand(
-                    param => CalculateAreaFunck()
-                );
+                _calculateArea = new RelayCommand(param => CalculateAreaFunck());
                 return _calculateArea;
             }
         }

@@ -57,11 +57,11 @@
           SelectedItem="{Binding SelectedOrientationType}"/>
             <Label Content="Площадь м2"></Label>
             <TextBox Text="{Binding Area,Mode=TwoWay }"></TextBox>
-        </StackPanel>
-        
+        </StackPanel>        
         <StackPanel Grid.Column="1" Orientation="Vertical">
-            <Label Content="Схема" ></Label>
-            <Image Grid.Column="1"  Source="{Binding SelectedItem.ImagePath, ElementName=StructureInstanceCombobox}" Width="250"/>
+            <Label Content="Схема Конструкции" ></Label>
+            <Image Grid.Column="1"  Source="{Binding Path= SelectedProperty.ImagePath}" Width="250"/>
+            <TextBlock Text="{Binding SelectedProperty.ImagePath}"></TextBlock>
             <Button> Подтвердить выбор конструкции </Button>
         </StackPanel>
     </Grid>
